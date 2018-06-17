@@ -15,10 +15,6 @@ namespace VoiceRecognitionSample
 		public MainPage()
 		{
             InitializeComponent();
-
-		    IVoiceRecognitionService svc = DependencyService.Get<IVoiceRecognitionService>();
-
-		    this.BindingContext = new MainPageViewModel(svc);
 		}
 	}
 }

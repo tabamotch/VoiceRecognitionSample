@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Reactive.Bindings;
 using VoiceRecognitionSample.Models;
+using Xamarin.Forms;
 
 namespace VoiceRecognitionSample.ViewModels
 {
@@ -12,23 +13,24 @@ namespace VoiceRecognitionSample.ViewModels
         private const string BUTTON_TEXT_STOP = "停止";
 
         // 音声認識の結果テキスト
-        private ReactiveProperty<string> RecognizedText { get; } = new ReactiveProperty<string>();
+        public ReactiveProperty<string> RecognizedText { get; } = new ReactiveProperty<string>("音声認識の結果がここに表示されます。");
 
         // 音声認識の開始・停止ボタンの表記
-        private ReactiveProperty<string> VoiceRecognitionButtonText { get; } = new ReactiveProperty<string>(BUTTON_TEXT_START);
+        public ReactiveProperty<string> VoiceRecognitionButtonText { get; } = new ReactiveProperty<string>(BUTTON_TEXT_START);
 
         // 音声認識を実行中かどうか（trueなら実行中）
-        private ReactiveProperty<bool> IsRecognizing { get; } = new ReactiveProperty<bool>(false);
+        public ReactiveProperty<bool> IsRecognizing { get; } = new ReactiveProperty<bool>(false);
 
         // 音声認識サービス
         private readonly IVoiceRecognitionService _voiceRecognitionService;
 
         // 音声認識サービスの処理の呼び出し用コマンド
-        private ReactiveCommand VoiceRecognitionCommand { get; } = new ReactiveCommand();
+        public ReactiveCommand VoiceRecognitionCommand { get; } = new ReactiveCommand();
 
-        public MainPageViewModel(IVoiceRecognitionService voiceRecognitionService)
+        public MainPageViewModel()
         {
-            _voiceRecognitionService = voiceRecognitionService;
+            IVoiceRecognitionService svc = DependencyService.Get<IVoiceRecognitionService>();
+            _voiceRecognitionService = svc;
 
             // 音声認識サービスのプロパティが変更されたときに実行する処理を設定する。
             _voiceRecognitionService.PropertyChanged += VoiceRecognitionServicePropertyChanged;
