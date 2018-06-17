@@ -1,0 +1,7 @@
+# VoiceRecognitionSample
+Xamarin.Formsで音声認識をさせてみるサンプル。
+以下のURLのページを参考にアプリを作成しました。
+https://qiita.com/microwavePC/items/40b1016cf84ea89c4ed1
+
+## 上記URLで公開されているソースとの相違点
+- 上記URLのサンプルソースではPrismを使用しているが、本リポジトリのソースではReactivePropertyを使用しています。そのため、Viewに対するViewModelの紐づけ方法や音声認識エンジンのインスタンス化箇所で差異があります。
