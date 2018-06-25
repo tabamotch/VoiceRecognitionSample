@@ -39,7 +39,7 @@ namespace VoiceRecognitionSample.iOS
         private SFSpeechRecognitionTask _recognitionTask;
 
         #endregion
-
+        
         #region Public Methods
 
         // 音声認識の開始処理
@@ -58,7 +58,7 @@ namespace VoiceRecognitionSample.iOS
                         // SFSpeechRecognizerのインスタンス生成時、コンストラクタの引数でlocaleを指定しなくても、
                         // 端末の標準言語が日本語なら日本語は問題なく認識される。
                         _audioEngine = new AVAudioEngine();
-                        _speechRecognizer = new SFSpeechRecognizer();
+                        _speechRecognizer = new SFSpeechRecognizer(new NSLocale("ja-JP"));
                         _recognitionRequest = new SFSpeechAudioBufferRecognitionRequest();
                         StartRecognitionSession();
                         break;

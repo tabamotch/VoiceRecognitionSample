@@ -6,8 +6,11 @@ using Xamarin.Forms;
 
 namespace VoiceRecognitionSample.ViewModels
 {
-    public class MainPageViewModel
+    public class MainPageViewModel : INotifyPropertyChanged
     {
+        // ReactivePropertyのメモリリーク対策用
+        public event PropertyChangedEventHandler PropertyChanged;
+
         // 音声認識の開始・停止ボタンのテキスト
         private const string BUTTON_TEXT_START = "開始";
         private const string BUTTON_TEXT_STOP = "停止";
@@ -67,7 +70,6 @@ namespace VoiceRecognitionSample.ViewModels
             }
         }
 
-
         // 音声認識サービス呼び出し用ボタンのコマンドの実処理
         private void ExecuteVoiceRecognition()
         {
@@ -82,6 +84,5 @@ namespace VoiceRecognitionSample.ViewModels
                 _voiceRecognitionService.StartRecognizing();
             }
         }
-
     }
 }
